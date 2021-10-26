@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 import "../App.css";
 
 const Navbar = () => {
-  const style = {
-    backgound: "rgb(240,240,240)",
-    color: "black",
-  };
+  const { theme } = useContext(ThemeContext);
+  const { isLightTheme, light, dark } = theme;
+
+  const style = isLightTheme ? light : dark;
 
   return (
-    <div className="navbar">
+    <div className="navbar" style={style}>
       <h1>My Hooks App</h1>
       <ul>
         <li>Home</li>

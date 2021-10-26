@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 import Todo from "./Todo";
 
 const TodoItem = ({ todo, deleteTodo }) => {
-  const style = {
-    backgound: "white",
-    color: "red",
-  };
+  const { theme } = useContext(ThemeContext);
+  const { isLightTheme, light, dark } = theme;
+  const style = isLightTheme ? light : dark;
 
   // const todo = props.todo;
   return (
     <li
+      style={style}
       onClick={() => {
         deleteTodo(todo.id);
       }}
