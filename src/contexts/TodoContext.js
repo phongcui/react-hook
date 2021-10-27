@@ -1,6 +1,5 @@
-import React, {createContext, useContext, useState} from 'react'
-import { v4 as uuidv4 } from "uuid";
-const TodoContext = createContext();
+import React, {createContext, useState} from 'react'
+export const TodoContext = createContext();
 
 const TodoContextProvider = ({ children}) => {
     //State
@@ -24,31 +23,11 @@ const TodoContextProvider = ({ children}) => {
         settoDos(toDos.filter((todo) => todo.id !== id));
       };
 
-      //TodoForm
-      const [title, settitle] = useState("");
-
-      const onTitleChange = (event) => {
-        settitle(event.target.value);
-      };
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        addTodo({
-          id: uuidv4(),
-          title: title,
-        });
-        settitle("");
-      };
-
-      // End TodoForm
-
       const todoContextData = {
           toDos:toDos,
           addTodoList:addTodoList,
           deleteTodo:deleteTodo,
-          title:title,
-          onTitleChange:onTitleChange,
-          handleSubmit:handleSubmit,
-          addTodo:addTodoList,
+
       }
 
 
@@ -56,7 +35,7 @@ const TodoContextProvider = ({ children}) => {
 
     return (
         <TodoContext.Provider value={todoContextData}>
-            { children }
+            {children}
         </TodoContext.Provider>
     )
 }

@@ -24,14 +24,14 @@ const Todo = () => {
   //   settoDos(toDos.filter((todo) => todo.id !== id));
   // };
 
-  const { toDos, addTodoList, deleteTodo } = useContext(TodoContext);
+  const { toDos } = useContext(TodoContext);
 
   return (
     <div className="todo-list">
-      <TodoForm addTodo={addTodoList}></TodoForm>
+      <TodoForm></TodoForm>
       <ul>
         {toDos.map((Todo) => {
-          return <TodoItem todo={Todo} deleteTodo={deleteTodo}></TodoItem>;
+          return <TodoItem todo={Todo}></TodoItem>;
         })}
       </ul>
     </div>

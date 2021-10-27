@@ -3,11 +3,14 @@ import { v4 as uuidv4 } from "uuid";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { TodoContext } from "../contexts/TodoContext";
 
-const TodoForm = ({ addTodo }) => {
+const TodoForm = () => {
   const { theme } = useContext(ThemeContext);
   const { isLightTheme, light, dark } = theme;
 
   const style = isLightTheme ? light : dark;
+
+  // Load todo context
+  const { addTodoList } = useContext(TodoContext);
 
   const [title, settitle] = useState("");
 
@@ -16,7 +19,7 @@ const TodoForm = ({ addTodo }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTodo({
+    addTodoList({
       id: uuidv4(),
       title: title,
     });
